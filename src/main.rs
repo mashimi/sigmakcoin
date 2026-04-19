@@ -19,8 +19,8 @@ async fn main() -> Result<()> {
     state.balances.insert("sig1genesis_distributor".to_string(), 100_000_000); // 100 ΣKC
     state.apply_block(&genesis).map_err(|e| anyhow::anyhow!(e))?;
 
-    // Initialize Consensus Engine
-    let mut consensus = DPoSEngine::new();
+    // Initialize Consensus Engine (Min stake: 10k, Loss threshold: 10)
+    let mut consensus = DPoSEngine::new(10_000, 10);
     consensus.validators.push(consensus::Validator {
         address: "sig1genesis_distributor".to_string(),
         stake: 10_000,
