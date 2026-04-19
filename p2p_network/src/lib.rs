@@ -24,6 +24,13 @@ pub enum NetworkMessage {
         validator_id: String,
         stake: u64,
     },
+    BlockRequest {
+        start_height: u64,
+        end_height: u64,
+    },
+    BlockResponse {
+        blocks: Vec<Vec<u8>>, // Serialized blocks
+    },
 }
 
 // Combined behaviour for gossipsub and mDNS
@@ -36,10 +43,15 @@ struct SigmaKBehaviour {
 pub struct SigmaKNetwork {
     swarm: Swarm<SigmaKBehaviour>,
     topic: gossipsub::TopicHash,
+    msg_sender: tokio::sync::mpsc::UnboundedSender<NetworkMessage>,
 }
 
 impl SigmaKNetwork {
-    pub async fn new(peer_id: PeerId, keypair: identity::Keypair) -> Result<Self, Box<dyn Error + Send + Sync>> {
+    pub async fn new(
+        peer_id: PeerId, 
+        keypair: identity::Keypair,
+        msg_sender: tokio::sync::mpsc::UnboundedSender<NetworkMessage>
+    ) -> Result<Self, Box<dyn Error + Send + Sync>> {
         // Configure gossipsub
         let gossipsub_config = gossipsub::ConfigBuilder::default()
             .heartbeat_interval(std::time::Duration::from_secs(1))
@@ -74,6 +86,7 @@ impl SigmaKNetwork {
         Ok(Self {
             swarm,
             topic: topic_hash,
+            msg_sender,
         })
     }
     
@@ -92,7 +105,8 @@ impl SigmaKNetwork {
                             message, ..
                         })) => {
                             if let Ok(msg) = bincode::deserialize::<NetworkMessage>(&message.data) {
-                                println!("📨 Received: {:?}", msg);
+                                println!("📨 Received network message: {:?}", msg);
+                                let _ = self.msg_sender.send(msg);
                             }
                         }
                         SwarmEvent::Behaviour(SigmaKBehaviourEvent::Mdns(mdns::Event::Discovered(list))) => {
@@ -123,9 +137,9 @@ impl SigmaKNetwork {
     }
 }
 
-pub async fn run() -> Result<(), Box<dyn Error + Send + Sync>> {
+pub async fn run(msg_sender: tokio::sync::mpsc::UnboundedSender<NetworkMessage>) -> Result<(), Box<dyn Error + Send + Sync>> {
     let local_key = identity::Keypair::generate_ed25519();
     let peer_id = PeerId::from(local_key.public());
-    let mut network = SigmaKNetwork::new(peer_id, local_key).await?;
+    let mut network = SigmaKNetwork::new(peer_id, local_key, msg_sender).await?;
     network.run().await
 }

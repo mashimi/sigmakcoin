@@ -1,5 +1,5 @@
 pub mod block;
 pub mod state;
 
-pub use block::{Block, Transaction};
-pub use state::{BlockchainState, UTXO};
+pub use block::{Block, Transaction, TxInput, TxOutput};
+pub use state::BlockchainState;

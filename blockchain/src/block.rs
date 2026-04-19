@@ -3,14 +3,32 @@ use sha2::{Sha256, Digest};
 use std::time::{SystemTime, UNIX_EPOCH};
 
 #[derive(Serialize, Deserialize, Clone, Debug)]
-pub struct Transaction {
-    pub from: String,
-    pub to: String,
+pub struct TxInput {
+    pub tx_id: [u8; 32],
+    pub output_index: u32,
+    pub signature: Vec<u8>, // Proof of ownership
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub struct TxOutput {
     pub amount: u64,
+    pub recipient: String,
+}
+
+#[derive(Serialize, Deserialize, Clone, Debug)]
+pub struct Transaction {
+    pub inputs: Vec<TxInput>,
+    pub outputs: Vec<TxOutput>,
     pub fee: u64,
-    pub proof_cid: Option<String>, // Reference to IPFS stored proof
     pub timestamp: u64,
-    pub signature: Vec<u8>,
+}
+
+impl Transaction {
+    pub fn calculate_id(&self) -> [u8; 32] {
+        let serialized = serde_json::to_vec(self).expect("Failed to serialize tx");
+        let hash = Sha256::digest(&serialized);
+        hash.into()
+    }
 }
 
 #[derive(Serialize, Deserialize, Clone, Debug)]

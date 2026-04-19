@@ -1,17 +1,8 @@
 use std::collections::HashMap;
-use crate::block::{Block, Transaction};
-
-#[derive(Clone, Debug, serde::Serialize, serde::Deserialize)]
-pub struct UTXO {
-    pub tx_id: [u8; 32],
-    pub output_index: u32,
-    pub amount: u64,
-    pub owner: String,
-}
+use crate::block::{Block, Transaction, TxOutput};
 
 pub struct BlockchainState {
-    pub utxos: HashMap<String, Vec<UTXO>>, // owner -> UTXOs
-    pub balances: HashMap<String, u64>,
+    pub utxos: HashMap<([u8; 32], u32), TxOutput>, // (tx_id, index) -> Output
     pub stakes: HashMap<String, u64>,
 }
 
@@ -19,7 +10,6 @@ impl BlockchainState {
     pub fn new() -> Self {
         Self {
             utxos: HashMap::new(),
-            balances: HashMap::new(),
             stakes: HashMap::new(),
         }
     }
@@ -29,23 +19,50 @@ impl BlockchainState {
             self.apply_transaction(tx)?;
         }
         
-        // Handle miner/proposer distribution (simplified)
-        let reward = 5_000_000; // 5 ΣKC
-        *self.balances.entry(block.proposer.clone()).or_insert(0) += reward;
+        // Coinbase: Handle miner/proposer reward (5 ΣKC)
+        let reward_output = TxOutput {
+            amount: 5_000_000,
+            recipient: block.proposer.clone(),
+        };
+        
+        // Simplified reward: hash of block as tx_id for reward UTXO
+        self.utxos.insert((block.calculate_hash(), 0), reward_output);
         
         Ok(())
     }
 
     fn apply_transaction(&mut self, tx: &Transaction) -> Result<(), String> {
-        // Simple balance check (ignoring UTXO logic for this PoC to keep it simple)
-        let sender_balance = self.balances.get(&tx.from).cloned().unwrap_or(0);
-        if sender_balance < tx.amount + tx.fee {
-            return Err(format!("Insufficient balance for {}", tx.from));
+        let mut input_sum = 0;
+        
+        // 1. Verify and spend inputs
+        for input in &tx.inputs {
+            let key = (input.tx_id, input.output_index);
+            if let Some(output) = self.utxos.remove(&key) {
+                input_sum += output.amount;
+            } else {
+                return Err("UTXO not found or already spent".to_string());
+            }
         }
 
-        *self.balances.entry(tx.from.clone()).or_insert(0) -= tx.amount + tx.fee;
-        *self.balances.entry(tx.to.clone()).or_insert(0) += tx.amount;
+        // 2. Verify outputs
+        let output_sum: u64 = tx.outputs.iter().map(|o| o.amount).sum();
+        if input_sum < output_sum + tx.fee {
+            return Err("Insufficient input for outputs and fee".to_string());
+        }
+
+        // 3. Create new UTXOs
+        let tx_id = tx.calculate_id();
+        for (i, output) in tx.outputs.iter().enumerate() {
+            self.utxos.insert((tx_id, i as u32), output.clone());
+        }
         
         Ok(())
+    }
+    
+    pub fn get_balance(&self, address: &str) -> u64 {
+        self.utxos.values()
+            .filter(|o| o.recipient == address)
+            .map(|o| o.amount)
+            .sum()
     }
 }

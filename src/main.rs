@@ -15,8 +15,12 @@ async fn main() -> Result<()> {
     let genesis = Block::new_genesis();
     println!("✨ Genesis block initialized: {}", hex::encode(genesis.calculate_hash()));
 
-    // Apply Genesis distribution (Seed some balances)
-    state.balances.insert("sig1genesis_distributor".to_string(), 100_000_000); // 100 ΣKC
+    // Apply Genesis distribution (Seed some balances manually for UTXO model)
+    state.utxos.insert(([0; 32], 0), blockchain::TxOutput {
+        amount: 100_000_000,
+        recipient: "sig1genesis_distributor".to_string(),
+    });
+    
     state.apply_block(&genesis).map_err(|e| anyhow::anyhow!(e))?;
 
     // Initialize Consensus Engine (Min stake: 10k, Loss threshold: 10)
@@ -28,15 +32,33 @@ async fn main() -> Result<()> {
     });
 
     println!("🏛️  Blockchain state ready. Initial balance: {} ΣKC", 
-        state.balances.get("sig1genesis_distributor").unwrap_or(&0) / 1_000_000);
+        state.get_balance("sig1genesis_distributor") / 1_000_000);
+
+    // Setup P2P Message Handling
+    let (msg_tx, mut msg_rx) = tokio::sync::mpsc::unbounded_channel::<p2p_network::NetworkMessage>();
 
     // Start Services
     let storage_handle = tokio::spawn(async {
         ipfs_storage::run().await
     });
 
-    let network_handle = tokio::spawn(async {
-        p2p_network::run().await
+    let network_handle = tokio::spawn(async move {
+        p2p_network::run(msg_tx).await
+    });
+
+    let msg_handler_handle = tokio::spawn(async move {
+        while let Some(msg) = msg_rx.recv().await {
+            match msg {
+                p2p_network::NetworkMessage::BlockRequest { start_height, .. } => {
+                    println!("📬 Peer requested blocks starting at height {}", start_height);
+                }
+                p2p_network::NetworkMessage::BlockResponse { blocks } => {
+                    println!("📥 Received {} blocks for sync", blocks.len());
+                }
+                _ => {}
+            }
+        }
+        Ok::<(), anyhow::Error>(())
     });
 
     let verifier_handle = tokio::spawn(async {
@@ -46,7 +68,7 @@ async fn main() -> Result<()> {
         Ok::<(), anyhow::Error>(())
     });
 
-    tokio::try_join!(storage_handle, network_handle, verifier_handle)?;
+    tokio::try_join!(storage_handle, network_handle, verifier_handle, msg_handler_handle)?;
 
     Ok(())
 }
