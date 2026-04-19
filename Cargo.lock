@@ -317,6 +317,18 @@ dependencies = [
 ]
 
 [[package]]
+name = "blockchain"
+version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "hex",
+ "proof_verifier",
+ "serde",
+ "serde_json",
+ "sha2",
+]
+
+[[package]]
 name = "bs58"
 version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -407,6 +419,15 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "4ca0197aee26d1ae37445ee532fefce43251d24cc7c166799f4d46817f1d3973"
 dependencies = [
  "crossbeam-utils",
+]
+
+[[package]]
+name = "consensus"
+version = "0.1.0"
+dependencies = [
+ "blockchain",
+ "rand 0.8.5",
+ "serde",
 ]
 
 [[package]]
@@ -3245,6 +3266,9 @@ name = "sigmak_full_node"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "blockchain",
+ "consensus",
+ "hex",
  "ipfs_storage",
  "p2p_network",
  "proof_verifier",

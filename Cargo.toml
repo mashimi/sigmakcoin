@@ -9,6 +9,9 @@ tokio = { version = "1", features = ["full"] }
 proof_verifier = { path = "./proof_verifier" }
 ipfs_storage = { path = "./ipfs_storage" }
 p2p_network = { path = "./p2p_network" }
+blockchain = { path = "./blockchain" }
+consensus = { path = "./consensus" }
+hex = "0.4"
 
 [workspace]
 members = [
@@ -16,6 +19,8 @@ members = [
     "ipfs_storage",
     "p2p_network",
     "validator",
+    "blockchain",
+    "consensus",
 ]
 
 [patch.crates-io]
