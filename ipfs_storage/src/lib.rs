@@ -5,6 +5,7 @@ use reqwest::Client;
 pub struct IPFSStorage {
     client: Client,
     gateway_url: String,
+    #[allow(dead_code)]
     api_url: String,
 }
 

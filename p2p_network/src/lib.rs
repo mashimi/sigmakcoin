@@ -39,13 +39,13 @@ pub struct SigmaKNetwork {
 }
 
 impl SigmaKNetwork {
-    pub async fn new(peer_id: PeerId, keypair: identity::Keypair) -> Result<Self, Box<dyn Error>> {
+    pub async fn new(peer_id: PeerId, keypair: identity::Keypair) -> Result<Self, Box<dyn Error + Send + Sync>> {
         // Configure gossipsub
         let gossipsub_config = gossipsub::ConfigBuilder::default()
             .heartbeat_interval(std::time::Duration::from_secs(1))
             .validation_mode(gossipsub::ValidationMode::Strict)
             .build()
-            .map_err(|e| Box::new(e) as Box<dyn Error>)?;
+            .map_err(|e| Box::new(e) as Box<dyn Error + Send + Sync>)?;
         
         let mut gossipsub = gossipsub::Behaviour::new(
             gossipsub::MessageAuthenticity::Signed(keypair.clone()),
@@ -77,7 +77,7 @@ impl SigmaKNetwork {
         })
     }
     
-    pub async fn run(&mut self) -> Result<(), Box<dyn Error>> {
+    pub async fn run(&mut self) -> Result<(), Box<dyn Error + Send + Sync>> {
         // Start listening on a random port
         self.swarm.listen_on("/ip4/0.0.0.0/tcp/0".parse()?)?;
         
@@ -98,7 +98,7 @@ impl SigmaKNetwork {
                         SwarmEvent::Behaviour(SigmaKBehaviourEvent::Mdns(mdns::Event::Discovered(list))) => {
                             for (peer_id, addr) in list {
                                 println!("🔍 Discovered peer: {} at {}", peer_id, addr);
-                                self.swarm.dial(addr)?;
+                                let _ = self.swarm.dial(addr);
                             }
                         }
                         _ => {}
@@ -113,7 +113,7 @@ impl SigmaKNetwork {
         Ok(())
     }
     
-    pub async fn broadcast_proof(&mut self, proof: NetworkMessage) -> Result<(), Box<dyn Error>> {
+    pub fn broadcast_proof(&mut self, proof: NetworkMessage) -> Result<(), Box<dyn Error + Send + Sync>> {
         let data = bincode::serialize(&proof)?;
         self.swarm
             .behaviour_mut()
@@ -121,4 +121,11 @@ impl SigmaKNetwork {
             .publish(self.topic.clone(), data)?;
         Ok(())
     }
+}
+
+pub async fn run() -> Result<(), Box<dyn Error + Send + Sync>> {
+    let local_key = identity::Keypair::generate_ed25519();
+    let peer_id = PeerId::from(local_key.public());
+    let mut network = SigmaKNetwork::new(peer_id, local_key).await?;
+    network.run().await
 }
