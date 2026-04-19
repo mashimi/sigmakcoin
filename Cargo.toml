@@ -1,0 +1,22 @@
+[package]
+name = "sigmak_full_node"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+anyhow = "1.0"
+tokio = { version = "1", features = ["full"] }
+proof_verifier = { path = "./proof_verifier" }
+ipfs_storage = { path = "./ipfs_storage" }
+p2p_network = { path = "./p2p_network" }
+
+[workspace]
+members = [
+    "proof_verifier",
+    "ipfs_storage",
+    "p2p_network",
+    "validator",
+]
+
+[patch.crates-io]
+core2 = { path = "third_party/core2" }

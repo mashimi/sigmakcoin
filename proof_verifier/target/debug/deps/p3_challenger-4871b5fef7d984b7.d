@@ -1,0 +1,10 @@
+C:\sigmakcoin\proof_verifier\target\debug\deps\p3_challenger-4871b5fef7d984b7.d: C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\lib.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\duplex_challenger.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\grinding_challenger.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\hash_challenger.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\multi_field_challenger.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\serializing_challenger.rs
+
+C:\sigmakcoin\proof_verifier\target\debug\deps\libp3_challenger-4871b5fef7d984b7.rmeta: C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\lib.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\duplex_challenger.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\grinding_challenger.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\hash_challenger.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\multi_field_challenger.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\serializing_challenger.rs
+
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\lib.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\duplex_challenger.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\grinding_challenger.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\hash_challenger.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\multi_field_challenger.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\challenger\src\serializing_challenger.rs:

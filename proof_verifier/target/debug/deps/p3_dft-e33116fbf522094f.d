@@ -1,0 +1,13 @@
+C:\sigmakcoin\proof_verifier\target\debug\deps\p3_dft-e33116fbf522094f.d: C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\lib.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\butterflies.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\naive.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\radix_2_bowers.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\radix_2_dit.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\radix_2_dit_parallel.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\radix_2_small_batch.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\traits.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\util.rs
+
+C:\sigmakcoin\proof_verifier\target\debug\deps\libp3_dft-e33116fbf522094f.rmeta: C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\lib.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\butterflies.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\naive.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\radix_2_bowers.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\radix_2_dit.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\radix_2_dit_parallel.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\radix_2_small_batch.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\traits.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\util.rs
+
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\lib.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\butterflies.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\naive.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\radix_2_bowers.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\radix_2_dit.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\radix_2_dit_parallel.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\radix_2_small_batch.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\traits.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\dft\src\util.rs:

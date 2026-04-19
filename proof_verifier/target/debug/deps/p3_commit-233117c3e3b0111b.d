@@ -1,0 +1,12 @@
+C:\sigmakcoin\proof_verifier\target\debug\deps\p3_commit-233117c3e3b0111b.d: C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\lib.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\adapters\mod.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\adapters\extension_mmcs.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\domain.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\mmcs.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\pcs.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\periodic.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\testing.rs
+
+C:\sigmakcoin\proof_verifier\target\debug\deps\libp3_commit-233117c3e3b0111b.rmeta: C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\lib.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\adapters\mod.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\adapters\extension_mmcs.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\domain.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\mmcs.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\pcs.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\periodic.rs C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\testing.rs
+
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\lib.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\adapters\mod.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\adapters\extension_mmcs.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\domain.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\mmcs.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\pcs.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\periodic.rs:
+C:\Users\Lenovo\.cargo\git\checkouts\plonky3-7d8a3b21a665a86f\c7bacae\commit\src\testing.rs:
