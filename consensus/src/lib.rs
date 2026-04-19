@@ -1,5 +1,5 @@
 use blockchain::Block;
-use proof_verifier::verify_gradient_proof;
+use sigmak_zk::verify_gradient_proof;
 use rand::seq::SliceRandom;
 use serde::{Serialize, Deserialize};
 use std::time::{SystemTime, UNIX_EPOCH};

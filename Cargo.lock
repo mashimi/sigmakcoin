@@ -426,6 +426,7 @@ name = "consensus"
 version = "0.1.0"
 dependencies = [
  "blockchain",
+ "proof_verifier",
  "rand 0.8.5",
  "serde",
 ]

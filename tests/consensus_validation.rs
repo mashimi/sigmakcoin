@@ -1,6 +1,6 @@
 use blockchain::{Block, Transaction};
 use consensus::{DPoSEngine, Validator};
-use proof_verifier::generate_gradient_proof;
+use sigmak_zk::generate_gradient_proof;
 use std::time::{SystemTime, UNIX_EPOCH};
 
 #[test]
@@ -14,8 +14,8 @@ fn test_block_validation_success() {
 
     let genesis = Block::new_genesis();
     
-    // Create a valid proof (Loss 2.5 -> 2.4 = 0.1 reduction, which is 10 in micro-units)
-    let proof = generate_gradient_proof(2.5, 2.4, 0.5, 50);
+    // Create a valid proof (Loss 12.5 -> 2.4 = 10.1 reduction, which satisfies threshold 10)
+    let proof = generate_gradient_proof(12.5, 2.4, 0.5, 50);
 
     let next_block = Block {
         height: 1,

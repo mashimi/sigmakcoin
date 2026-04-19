@@ -2,7 +2,7 @@ use pyo3::prelude::*;
 use pyo3::wrap_pyfunction;
 
 mod zk_circuit;
-use crate::zk_circuit::{generate_gradient_proof, verify_gradient_proof};
+pub use crate::zk_circuit::{generate_gradient_proof, verify_gradient_proof};
 
 #[pyfunction]
 fn create_proof(loss_before: f32, loss_after: f32, gradient_norm: f32, steps: usize) -> PyResult<Vec<u8>> {
